@@ -41,7 +41,7 @@ public class Factorization {
     }
 
     public static void factorizeAll() {
-        try (var threadPool = Executors.newFixedThreadPool(8)) {
+        try (var threadPool = Executors.newVirtualThreadPerTaskExecutor()) {
             for (var n : NUMBERS) {
                 threadPool.execute(() -> {
                     var factors = factorize(n);
