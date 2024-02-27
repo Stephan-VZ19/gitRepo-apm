@@ -4,6 +4,7 @@ import org.openjdk.jmh.Main;
 import org.openjdk.jmh.annotations.*;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 @State(Scope.Benchmark)
 public class GreeterBenchmark {
@@ -16,6 +17,8 @@ public class GreeterBenchmark {
     }
 
     @Benchmark
+    @BenchmarkMode(Mode.AverageTime)
+    @OutputTimeUnit(TimeUnit.MICROSECONDS)
     @Fork(1)
     @Warmup(iterations = 5, time = 2)
     @Measurement(iterations = 2, time = 2)
