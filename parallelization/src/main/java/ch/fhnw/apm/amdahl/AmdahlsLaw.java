@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 public class AmdahlsLaw {
 
     public static void main(String[] args) {
-        var parallelism = 1;
+        var parallelism = 2;
 
         var start = System.nanoTime();
         prepare();

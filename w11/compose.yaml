@@ -1,0 +1,28 @@
+services:
+  web-app:
+    build: .
+    environment:
+      - 'SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/phrase-press'
+      - 'SPRING_DATASOURCE_USERNAME=user'
+      - 'SPRING_DATASOURCE_PASSWORD=secret'
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '1'
+          memory: '2G'
+    depends_on:
+      - postgres
+
+  postgres:
+    extends:
+      file: compose-postgres.yaml
+      service: postgres
+      
+  load-balancer:
+    build: load-balancer
+    ports:
+      - '8080:8080'
+    depends_on:
+      - web-app
+
